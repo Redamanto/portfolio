@@ -39,7 +39,6 @@ function drawMatrix() {
 
         ctx.fillText(text, i * spacing, drops[i] * fontSize);
 
-        // Se vuoi che le "frecce" siano più corte, puoi anche aumentare la probabilità di reset
         if (drops[i] * fontSize > height && Math.random() > 0.95) { // Abbassato da 0.98 a 0.95
             drops[i] = 0;
         }
@@ -56,23 +55,21 @@ initCanvas();
 // Usiamo un intervallo fluido
 setInterval(drawMatrix, 33);
 
+// --- GESTIONE ANIMAZIONI SCROLL (REVEAL CICLICO) ---
 const observerOptions = {
-    threshold: 0.1, // Si attiva quando il 10% della card è visibile
-    rootMargin: "0px 0px -50px 0px" // Aggiunge un "cuscinetto" di 50px in basso
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px" // Margine di sicurezza
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            // OPZIONALE: Se vuoi che l'animazione avvenga SOLO la prima volta 
-            // ed evitare il tremolio all'uscita, decommenta la riga sotto:
-            // observer.unobserve(entry.target);
         } else {
-            // Rimuovi questo pezzo se vuoi che le card restino fisse una volta apparse
-            // entry.target.classList.remove('active'); 
+            entry.target.classList.remove('active');
         }
     });
 }, observerOptions);
 
+// Applica l'observer a tutti gli elementi con classe .reveal
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
