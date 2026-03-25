@@ -27,8 +27,8 @@ function initCanvas() {
 }
 
 function drawMatrix() {
-    // Sfondo semi-trasparente per la scia
-    ctx.fillStyle = "rgba(18, 18, 18, 0.15)";
+    // Aumentiamo da 0.1 a 0.3 per "pulire" più velocemente le scie vecchie
+    ctx.fillStyle = "rgba(18, 18, 18, 0.3)";
     ctx.fillRect(0, 0, width, height);
 
     ctx.fillStyle = "#028a76";
@@ -37,10 +37,10 @@ function drawMatrix() {
     for (let i = 0; i < drops.length; i++) {
         const text = codeChars[Math.floor(Math.random() * codeChars.length)];
 
-        // Disegno con lo spacing dinamico
         ctx.fillText(text, i * spacing, drops[i] * fontSize);
 
-        if (drops[i] * fontSize > height && Math.random() > 0.975) {
+        // Se vuoi che le "frecce" siano più corte, puoi anche aumentare la probabilità di reset
+        if (drops[i] * fontSize > height && Math.random() > 0.95) { // Abbassato da 0.98 a 0.95
             drops[i] = 0;
         }
 
