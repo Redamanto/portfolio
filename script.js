@@ -56,18 +56,21 @@ initCanvas();
 // Usiamo un intervallo fluido
 setInterval(drawMatrix, 33);
 
-// --- 2. GESTIONE ANIMAZIONI SCROLL (REVEAL) ---
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -20px 0px"
+    threshold: 0.1, // Si attiva quando il 10% della card è visibile
+    rootMargin: "0px 0px -50px 0px" // Aggiunge un "cuscinetto" di 50px in basso
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            // OPZIONALE: Se vuoi che l'animazione avvenga SOLO la prima volta 
+            // ed evitare il tremolio all'uscita, decommenta la riga sotto:
+            // observer.unobserve(entry.target);
         } else {
-            entry.target.classList.remove('active');
+            // Rimuovi questo pezzo se vuoi che le card restino fisse una volta apparse
+            // entry.target.classList.remove('active'); 
         }
     });
 }, observerOptions);

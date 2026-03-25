@@ -83,12 +83,13 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* Cards & Animazioni Scroll */
 .reveal {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(20px);
+    /* Ridotto da 40px a 20px */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     will-change: opacity, transform;
+    /* Aiuta il browser a gestire l'animazione */
 }
 
 .reveal.active {
