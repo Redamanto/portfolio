@@ -27,7 +27,7 @@ function initCanvas() {
 }
 
 function drawMatrix() {
-    // Aumentiamo da 0.1 a 0.3 per "pulire" più velocemente le scie vecchie
+    // Aumento da 0.1 a 0.3 per "pulire" più velocemente le scie vecchie
     ctx.fillStyle = "rgba(18, 18, 18, 0.3)";
     ctx.fillRect(0, 0, width, height);
 
