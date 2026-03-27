@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Disallow: /pfp.jpg
 Sitemap: https://redamanto.github.io/portfolio/sitemap.xml
